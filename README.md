@@ -1,93 +1,113 @@
-# 🔐 AI-Based Phishing & Scam Detection
+# AI-Based Phishing & Scam Detection System
 
-An AI-powered machine learning system designed to identify potentially malicious, phishing, and scam messages using Natural Language Processing (NLP) and machine learning techniques.
+An NLP and machine learning-based application that classifies text messages as legitimate (ham) or potentially unwanted/spam. It includes a Streamlit interface for testing messages.
 
-## 📌 Overview
+## Project Overview
 
-Phishing and online scams are increasingly used to trick users into revealing sensitive information or interacting with malicious content.
+The project applies text preprocessing, TF-IDF vectorization, feature selection and machine learning algorithms to identify spam messages.
 
-This project uses **Natural Language Processing and Machine Learning** to analyze text and classify it as either **legitimate** or **potentially malicious**.
+## Technologies Used
 
-The project also provides an interactive **Streamlit web interface** where users can enter a message and receive a prediction.
+- Python
+- Pandas and NumPy
+- Scikit-learn
+- TF-IDF
+- Matplotlib and Seaborn
+- Streamlit
 
----
+## Dataset
 
-## 🎯 Objectives
+The project uses the UCI SMS Spam Collection dataset, along with 20 additional custom examples.
 
-- Detect potentially malicious phishing and scam messages.
-- Apply NLP techniques to process textual data.
-- Compare multiple machine learning algorithms.
-- Evaluate models using standard classification metrics.
-- Provide an easy-to-use web interface for predictions.
+The dataset contains two classes:
+- Ham: legitimate messages
+- Spam: unwanted or suspicious messages
 
----
+## Machine Learning Workflow
 
-## 🚀 Features
+1. Text preprocessing
+2. Feature extraction using TF-IDF
+3. Feature selection using SelectKBest with Chi-square
+4. Stratified train-test split (80:20)
+5. Model training
+6. Model evaluation and comparison
+7. Best-model selection
+8. Streamlit application integration
 
-- 🧠 Machine Learning-based text classification
-- 🔤 TF-IDF text vectorization
-- 🔍 Phishing and scam detection
-- 📊 Model performance evaluation
-- 📈 Confusion matrix and classification metrics
-- 🌐 Interactive Streamlit interface
-- ⚡ Fast predictions
-- 🔒 Designed as a detection aid for suspicious messages
+## Algorithms Implemented
 
----
+- Multinomial Naive Bayes
+- Support Vector Machine (SVM)
+- Random Forest Classifier
 
-## 🛠️ Technologies Used
+## Model Evaluation
 
-| Technology | Purpose |
-|------------|---------|
-| Python | Core programming language |
-| Pandas | Data processing |
-| NumPy | Numerical operations |
-| Scikit-learn | Machine learning |
-| TF-IDF | Text feature extraction |
-| Streamlit | Web interface |
-| Matplotlib | Data visualization |
-| Seaborn | Visualization |
+The models were evaluated using accuracy, precision, recall, F1-score, ROC-AUC and confusion matrices.
 
----
+### Results
 
-## 🤖 Machine Learning Models
+| Metric | Naive Bayes | SVM | Random Forest |
+|---|---:|---:|---:|
+| Accuracy | 98.17% | 98.17% | 97.69% |
+| Precision | 100% | 92.59% | 100% |
+| Recall | 85.82% | 93.28% | 82.09% |
+| F1-score | 92.37% | 92.94% | 90.16% |
+| ROC-AUC | 98.73% | 98.84% | 99.15% |
 
-Multiple classification algorithms were explored and compared:
+**Selected model: SVM**, based on its highest F1-score.
 
-- **Multinomial Naive Bayes**
-- **Support Vector Machine (SVM)**
-- **Random Forest**
-
-The models were evaluated using:
-
-- Accuracy
-- Precision
-- Recall
-- F1-Score
-- ROC-AUC
-- Confusion Matrix
-
----
-
-## 🔄 Workflow
+## Project Structure
 
 ```text
-Input Dataset
-     ↓
-Data Cleaning
-     ↓
-Text Preprocessing
-     ↓
-TF-IDF Vectorization
-     ↓
-Train/Test Split
-     ↓
-Machine Learning Models
-     ↓
-Model Evaluation
-     ↓
-Best Performing Model
-     ↓
-Streamlit Web Application
-     ↓
-Phishing / Scam Prediction
+phishing_detection_system/
+├── app.py
+├── train_model.py
+├── requirements.txt
+├── dataset/
+│   └── SMSSpamCollection
+├── utils/
+│   └── preprocessing.py
+├── best_model.pkl
+├── tfidf_vectorizer_new.pkl
+├── feature_selector.pkl
+├── model_results.csv
+├── model_comparison.png
+└── confusion_matrices.png
+```
+
+## Installation and Execution
+
+Clone the repository:
+
+```bash
+git clone https://github.com/suprita3112/AI-Based-Phishing-Scam-Detection-.git
+cd AI-Based-Phishing-Scam-Detection-
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Train the models:
+
+```bash
+python train_model.py
+```
+
+Run the Streamlit application:
+
+```bash
+python -m streamlit run app.py
+```
+
+## Limitations
+
+- The current dataset focuses on SMS messages.
+- Performance on other forms of phishing, such as malicious websites and email links, has not been independently validated.
+- Predictions are classification outputs and should be treated as decision-support information, not guarantees.
+
+## Conclusion
+
+The project demonstrates how NLP and machine learning can be combined to classify SMS messages. Among the three evaluated algorithms, SVM achieved the highest F1-score of 92.94% and was selected for integration into the Streamlit application.
